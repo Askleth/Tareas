@@ -22,10 +22,10 @@
 En esta actividad se pidió analizar algunos de los indices propuestos por un grupo de expertos sobre la detección y monitoreo de índices que miden los efectos del Cambio Climático sobre datos obtenidos del Servicio Meteorológico Nacional de la Comisión Nacional del Agua. En particular elegí los datos sobre Obregón. 
 
 El principal problema para la realización de esta actividad fue la falta de datos y los datos "Nulos" o símplemente datos que no cumplen con los requisitos del índice.
-Para lidiar con los datos "Nulos" primero tenemos que decirle a la libreria de pandas que cuando lea los datos ignore los "Nulos".
+Para lidiar con los datos "Nulos" primero tenemos que decirle a la libreria de pandas que cuando lea los datos ignore los "Nulos". Ya que tenemos nuestros datos "limpios" aun tenemos el problema de cuando tenemos que graficar secciones en donde no existen datos. Se arregló este problema de la manera fácil poniendo una línea que va desde el último dato conocido hasta el primer dato conocido, como se ve en la figura(\ref{fig:linea}). Cabe aclarar que en mi lista de datos original (de Cd. Obregón) no tiene datos faltantes en medio de ésta por lo que las gráficas no se ven cortadas.
 
 El problema con los datos que no cumplen con los requisitos del índice fue un poco más complicado de resolver y las soluciones varian dependiendo del índice.
-Por ejemplo, para el índice 4 (Longitud de la estación de cultivo por año); mis datos no tenian ningun sólo dato que cumpliera con esa condición (Periodo entre los primeros 6 días seguidos del año  Tprom $>$ 5ºC, y los últimos 6 días seguidos del año con Tprom $<$ 5ºC) por lo que tuve que hacer que el codigo reconociera los datos cuando un dato sirve y cuando no, y cuando no sirviera que tratara ese valor como un valor "N/A" (No disponible). Pero debido a que ninguno de mis datos cumple con la condición, la grágica quedó vacía, como se muestra en la figura(\ref{fig:indice4}). Pero gracias a que hice ésto, el codigo funciona para cualquier tabla de datos (aunque funciona muy lento para tablas con muchos datos).
+Por ejemplo, para el índice 4 (Longitud de la estación de cultivo por año); mis datos no tenian ningun sólo dato que cumpliera con esa condición (Periodo entre los primeros 6 días seguidos del año  Tprom $>$ 5ºC, y los últimos 6 días seguidos del año con Tprom $<$ 5ºC) por lo que tuve que hacer que el codigo reconociera los datos cuando un dato sirve y cuando no, y cuando no sirviera que tratara ese valor como un valor 'None'. Pero para el índice 4 cuando no se cumple con la condición se dice que todos los días del año son temporada de cultivo por lo que la tabla quedó como se muestra en la ficura(\ref{fig:indice4}). Pero gracias a que hice ésto, el codigo funciona para cualquier tabla de datos.
 
 Con el analisis realizado en ésta actividad se puede apreciar un cambio en la temperatura de obregon. Podemos ver para los años de 1990 al2011 la temperatura iba en aumento figura(\ref{fig:indice5}). Pero por falta de datos no se pudo realizar un analisis sobre los últimos 8 años para poder apreciar bien este aumento de la temperatura.
 
@@ -36,9 +36,15 @@ Con el analisis realizado en ésta actividad se puede apreciar un cambio en la t
  En general se puede observar que es un lugar calido seco, con pocas precipitaciones anuales y periodos de sequía altos. Además, durante los años la temperatura ha aumentado, mientras que la cantidad de precipitación anual se mantiene mas o menos igual a lo largo de todos los datos.
  
  \begin{figure}
+     \centering
+     \includegraphics{linea.png}
+     \caption{Gráfica de prueba que ejemplifica una función de mi código}
+     \label{fig:linea}
+ \end{figure}
+ \begin{figure}
     \centering
-    \includegraphics[scale= .25]{indice4.png}
-    \caption{Gráfica que representa la longitud de la temporada de cosecha}
+    \includegraphics[scale= .30]{cosechas.png}
+    \caption{Gráfica que representa la longitud de la temporada de cosecha, como ningun día del año cumple con la condición exacta y es zona templada entonces todos los días del año pueden conciderarse como temporada de cosecha}
     \label{fig:indice4}
 \end{figure}
 \begin{figure}
